@@ -1,0 +1,172 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width , initial-scale=1.0" />
+<title>All products- glamorous world</title>
+<link rel="stylesheet" href="http://localhost/php/project/css/glamourstyle.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="http://localhost/php/project/html/project.html"><img src="http://localhost/php/project/images/Untitled.jpg" width="280px" border="15px"></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="http://localhost/php/project/html/project.html">Home</a></li>
+                        <li><a href="http://localhost/php/project/html/product.html">Product</a></li>
+                        <li><a href="http://localhost/php/project/html/about.html">About</a></li>
+                        <li><a href="http://localhost/php/project/html/contact.html">Contact</a></li>
+                        <li><a href="http://localhost/php/project/html/account.html">Account</a></li>
+                    </ul>
+                </nav>
+                <a href="http://localhost/php/project/html/cart.html"><img src="http://localhost/php/project/images/Capture.PNG" width="27px" height="27px"></a>
+            </div>
+            </div>
+        </div>
+        </div>
+        <section id="blog-home" class="pt-5 mt-3 container ">
+            <h2 class="font-weight-bold pt-5">Shopping cart</h2><br><br><br>
+            <hr><br>
+         </section>
+        <section id="cart-container" class="container my-3">
+            <table width="100%">
+                <tbody>
+        
+    <form id="form1" >
+        <div>
+            <div class="click-cart">
+                <div class="cart-row2">
+                    <span class="cart-item cart-header cart-column">ITEM</span>
+                    <span class="cart-price cart-header cart-column">PRICE</span>
+                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                </div>
+                <br><br>
+                <!--------------------------------------------------------------------------------------------------------->
+                <div class="cart-row">
+                    <div class="lakn">
+                        <img class="shop-item-cart" src="http://localhost/php/project/images/brush.jpg" border="3" height="150px">
+                        <span class="shop-title">Sephora Makeup Brushes</span>
+                        <span class="shop-price">₹999.00</span>
+                        <input class="quantity-input" type="number" value="1" />
+                        <button class="delete-cart">X</button>
+                    </div>
+                </div>
+                <br><br>
+                <!--------------------------------------------------------------------------------------------------------------->
+                <div class="cart-row">
+                    <div class="lakn">
+                        <img class="shop-item-cart" src="http://localhost/php/project/images/b4.jpg" border="3" height="150px">
+                        <span class="shop-title">Z'OREYA Makeup Brushes</span>
+                        <span class="shop-price">₹899.00</span>
+                        <input class="quantity-input" type="number" value="1" />
+                        <button class="delete-cart">X</button>
+                    </div>
+                </div>
+                <br><br>
+                <!------------------------------------------------------------------------------------------------------------>
+                <div class="cart-row">
+                    <div class="lakn">
+                        <img class="shop-item-cart" src="http://localhost/php/project/images/b6.jpg" border="3" height="150px">
+                        <span class="shop-title">Makeup Brushes</span>
+                        <span class="shop-price">₹729.00</span>
+                        <input class="quantity-input" type="number" value="1" />
+                        <button class="delete-cart">X</button>
+                    </div>
+                </div>
+                <br><br>
+                <!------------------------------------------------------------------------------------------------------------>
+                <div class="clear-checkout">
+                   <button class="checkout"><a href="http://localhost/php/project/html/checkout.html">Checkout</button></a>
+                    <button class="clear-cart">Clear Cart</button>
+                </div>
+                <br><br>
+                <div class="cart-total">
+                    <strong class="cart-total-title">Total</strong>
+                    <span class="cart-total-price">₹2627</span>
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </form>
+    <script>
+        let removeCartItemButtons = document.querySelectorAll('.delete-cart');
+        for (let i = 0; i < removeCartItemButtons.length; i++) {
+
+            let button = removeCartItemButtons[i]
+            button.addEventListener('click', removeCartItem)
+        }
+
+        let quantityInputs = document.querySelectorAll('.quantity-input');
+        for (let i = 0; i < quantityInputs.length; i++) {
+
+            let input = quantityInputs[i]
+            input.addEventListener('change', quantityChanged);
+        }
+
+        function removeCartItem(event) {
+            let buttonCliked = event.target;
+            buttonCliked.parentElement.parentElement.remove()
+            updateCartTotal()
+        }
+
+        function quantityChanged() {
+
+            let input = event.target;
+            if (isNaN(input.value) || input.value <= 0) {
+                input.value = 1;
+            }
+            updateCartTotal()
+        }
+
+        function updateCartTotal() {
+            let cartItemContainer = document.querySelector('.click-cart');
+            let cartRows = cartItemContainer.querySelectorAll('.cart-row');
+
+            let total = 0
+            for (let i = 0; i < cartRows.length; i++) {
+                let cartRow = cartRows[i]
+                let priceElement = cartRow.querySelector('.shop-price');
+                let quantityElement = cartRow.querySelector('.quantity-input');
+
+                let price = parseFloat(priceElement.innerText.replace('₹', ''))
+                let quantity = quantityElement.value
+                total = total + (price * quantity)
+            }
+            total = Math.round(total * 100) / 100
+            document.querySelector('.cart-total-price').innerText = '₹' + total;
+        }
+        var productImg=document.getElementById("ProductImg");
+    var SmallImg=document.getElementsByClassName("small-img");
+
+    SmallImg[0].onclick=function()
+    {
+        ProductImg.src=SmallImg[0].src;
+    }
+    SmallImg[1].onclick=function()
+    {
+        ProductImg.src=SmallImg[1].src;
+    }
+    SmallImg[2].onclick=function()
+    {
+        ProductImg.src=SmallImg[2].src;
+
+    }
+    SmallImg[3].onclick=function()
+    {
+        ProductImg.src=SmallImg[3].src;
+
+    }
+
+    </script>
+    <!--------------------------------------footer----------------------------->
+<div class="footer">
+    <div class="container">
+            <img src="http://localhost/php/project/images/footer.jpg">
+            <p><marquee>Our purpose is to provide you the benifits of top brand items at very affordable price</marquee></p>
+            </div>
+</div>
+</body>
+</html>
